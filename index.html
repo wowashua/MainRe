@@ -2,19 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f4f4;
+            background: #f0f2f5;
+            color: #333;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 50px auto;
-            background: white;
+            background: #fff;
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -22,33 +29,37 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            margin-bottom: 20px;
         }
 
         .tabs {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .tab {
-            padding: 10px 20px;
+            padding: 12px 24px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             color: #666;
-            transition: all 0.3s ease;
             border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .tab:hover, .tab.active {
-            color: #4CAF50;
-            border-bottom: 4px solid #4CAF50;
+            color: #219653;
+            border-color: #219653;
+        }
+
+        .tab[aria-selected="true"] {
+            font-weight: bold;
         }
 
         .tab-content {
             display: none;
-            padding: 20px 0;
             animation: fadeIn 0.3s ease;
         }
 
@@ -56,13 +67,20 @@
             display: block;
         }
 
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         .download-button {
-            display: inline-block;
-            background-color: #4CAF50;
+            display: inline-flex;
+            align-items: center;
+            background-color: #219653;
             color: white;
-            padding: 12px 24px;
+            padding: 12px 20px;
             font-size: 15px;
-            margin: 10px;
+            margin: 8px;
             border: none;
             border-radius: 8px;
             text-decoration: none;
@@ -70,47 +88,78 @@
             transition: background-color 0.3s ease;
         }
 
+        .download-button i {
+            margin-right: 8px;
+        }
+
         .download-button:hover {
-            background-color: #45a049;
+            background-color: #1e874a;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 600px) {
+            .tab {
+                flex: 1 1 50%;
+                text-align: center;
+            }
+
+            .download-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Download Center</h1>
-        <div class="tabs">
-            <div class="tab active" onclick="showTab('free')">Free Downloads</div>
-            <div class="tab" onclick="showTab('paid')">Paid Downloads</div>
+
+        <div class="tabs" role="tablist">
+            <div class="tab active" role="tab" aria-selected="true" onclick="showTab('free')">Free Downloads</div>
+            <div class="tab" role="tab" aria-selected="false" onclick="showTab('paid')">Paid Downloads</div>
         </div>
 
-        <div id="free" class="tab-content active">
-            <a href="install.py" download class="download-button">SimplicEditor</a>
-            <a href="file2.py" download class="download-button">File 2</a>
-            <a href="file3.py" download class="download-button">File 3</a>
-            <a href="file4.py" download class="download-button">File 4</a>
-            <a href="file5.py" download class="download-button">File 5</a>
+        <div id="free" class="tab-content active" role="tabpanel">
+            <div class="section-title">Available Free Files:</div>
+            <a href="install.py" download class="download-button"><i class="fa-solid fa-download"></i>SimplicEditor</a>
+            <a href="file2.py" download class="download-button"><i class="fa-solid fa-download"></i>File 2</a>
+            <a href="file3.py" download class="download-button"><i class="fa-solid fa-download"></i>File 3</a>
+            <a href="file4.py" download class="download-button"><i class="fa-solid fa-download"></i>File 4</a>
+            <a href="file5.py" download class="download-button"><i class="fa-solid fa-download"></i>File 5</a>
         </div>
 
-        <div id="paid" class="tab-content">
-            <a href="file6.py" download class="download-button">File 6</a>
-            <a href="file7.py" download class="download-button">File 7</a>
-            <a href="file8.py" download class="download-button">File 8</a>
-            <a href="file9.py" download class="download-button">File 9</a>
-            <a href="file10.py" download class="download-button">File 10</a>
+        <div id="paid" class="tab-content" role="tabpanel">
+            <div class="section-title">Available Paid Files:</div>
+            <a href="file6.py" download class="download-button"><i class="fa-solid fa-download"></i>File 6</a>
+            <a href="file7.py" download class="download-button"><i class="fa-solid fa-download"></i>File 7</a>
+            <a href="file8.py" download class="download-button"><i class="fa-solid fa-download"></i>File 8</a>
+            <a href="file9.py" download class="download-button"><i class="fa-solid fa-download"></i>File 9</a>
+            <a href="file10.py" download class="download-button"><i class="fa-solid fa-download"></i>File 10</a>
         </div>
     </div>
 
     <script>
         function showTab(tabId) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
 
-            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+
+            contents.forEach(content => content.classList.remove('active'));
+
+            const selectedTab = Array.from(tabs).find(tab => tab.textContent.trim().toLowerCase().includes(tabId));
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                selectedTab.setAttribute('aria-selected', 'true');
+            }
+
             document.getElementById(tabId).classList.add('active');
         }
     </script>
